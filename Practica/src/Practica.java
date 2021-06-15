@@ -172,6 +172,8 @@ public class Practica{
             }case 5:{
             	borrar_pantalla();
             	System.out.println("Ingreso a la opcion 5. Ordenar Peliculas");
+            	ordenar(nombrePelicula,cantidadPeliculas);            	
+            	mostrarAreglado(nombrePelicula,cantidadPeliculas);
             	pausa();
             	borrar_pantalla();
                 break;
@@ -192,6 +194,8 @@ public class Practica{
             }case 8:{
             	borrar_pantalla();
             	System.out.println("Ingreso a la opcion 8. Reportes");
+            	mostrarPeliculas(nombrePelicula, categoriaPelicula,idPelicula,estrenoPelicula,cantidadPeliculas,estadoPelicula);
+            	mostrarClientes(nombreClientes, idClientes, telefonoClientes, id, quienRento,diasPrestado);
             	pausa();
             	borrar_pantalla();
             	break;
@@ -385,6 +389,7 @@ public class Practica{
 			int id2 = read.nextInt();
 			estadoPelicula[id2]=false;
 			quienRento[id]=false;
+			diasPrestado[id] = 0;
 			System.out.println("ID ["+idClientes[id]+"] nombre : ["+nombreClientes[id]+"] devolvio :["+nombrePelicula[id2]+"]");
 		}else{
 			System.out.println("nadie ha rentado");			
@@ -402,8 +407,24 @@ public class Practica{
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public void ordenamientoAlfabetico(){
 
-    }		
-		
+    public void ordenar(String[] nombrePelicula, int cantidadPeliculas) {
+
+        for(int i=0;i<cantidadPeliculas;i++) {
+            for(int j=0;j<cantidadPeliculas-i;j++) {
+                if (nombrePelicula[j].compareTo(nombrePelicula[j+1])>0) {
+                    String aux;
+                    aux = nombrePelicula[j];
+                    nombrePelicula[j]=nombrePelicula[j+1];
+                    nombrePelicula[j+1]=aux;
+                }
+            }
+        }
+    }
+
+    public void mostrarAreglado(String[] nombrePelicula, int cantidadPeliculas){
+    	for (int i = 0 ; i<cantidadPeliculas ; i++) {
+        	System.out.println("ID ["+idPelicula[i]+ "] nombre ["+nombrePelicula[i]+ "]");
+        }
+    }
 }
